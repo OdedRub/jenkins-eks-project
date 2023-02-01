@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>Oded's WeatherApp</title>
+</head>
+
+<Body background="https://i.postimg.cc/ydqDXMG6/yellowbackground.jpg"><br></Body>
+
+<body> <center><h1>Welcome to WeatherAPP</h1></center>
+
+    <center><form method = "POST">
+        <br>
+    <p>Enter a city/country name
+        <br>
+        <input type = "text" name = "City" /></p>
+    <p><input type = "submit" value = "Submit"/></p>
+         </br>
+    </form></center>
+    <p><a href="/download">
+        <center><input type = "submit" value = "Download image"/></center>
+    </a></p>
+
+    <center><button onclick="window.location.href='/backup'">Backup Data</button></center>
+
+{% if dictb and full_city%}
+
+<center><h1>Weather in {{ full_city[0] }}, {{ full_city[1] }}: </h1></center>
+    <br>
+<center><table>
+    <th> Date </th>
+    <th> Minimum temperature </th>
+    <th> Maximum temperature </th>
+    <th> Minimum humidity </th>
+    <th> Maximum humidity </th>
+
+   {% for date in dictb.keys() %}
+    <tr>
+        <td> {{ date }} </td>
+        <td> <center> {{ dictb[date][0].min_temp }} </center> </td>
+        <td> <center> {{ dictb[date][0].max_temp }} </center> </td>
+        <td> <center> {{ dictb[date][0].min_humidity }} </center> </td>
+        <td> <center> {{ dictb[date][0].max_humidity }} </center> </td>
+        {% endfor %}
+    </tr>
+
+{% else %}
+  {% endif %}
+
+</table></center>
+</body>
+</html>
