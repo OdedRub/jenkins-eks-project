@@ -61,28 +61,5 @@ def form():
         # print("Enter input.")
         return render_template('index.html')
 
-
-@application.route('/download', methods=['GET'])
-def download():
-    path = 'sky-purple-sky.gif'
-    s3.download_file(BUCKET_NAME, KEY, path)
-    return send_file(path, as_attachment=True)
-    # return render_template('index_downloaded.html')
-
-
-@application.route('/backup', methods=['GET'])
-def backup():
-    dynamodb = boto3.resource('dynamodb')  # use resource to put item in dynamodb
-    table = dynamodb.Table('weather')
-    item = {
-            'City': f'{location}',
-            'Weather': f'{data}'
-    }
-    #item = {'city': f'{location}', 'Date': f'{data}', 'Min temp': '-2', 'Max temp': '6', 'Min humidity': '75', 'Max humidity': '92'}
-
-    table.put_item(Item=item)
-    return render_template('backup.html')
-
-
 if __name__ == '__main__':
     application.run(host='localhost', port=5000, debug=True)
