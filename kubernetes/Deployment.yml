@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-deploy
+spec:
+  selector: 
+    matchLabels:
+      app: weather-deploy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather-deploy
+    spec:
+      containers:
+        - name: weather
+          image: 718666525897.dkr.ecr.eu-central-1.amazonaws.com/project_1:latest
+          #image: {{ image_name }}
+          #image: odedruby/weather:297
+          ports:
+          - containerPort: 8989
+          envFrom:
+            - configMapRef:
+                name: image-name

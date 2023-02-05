@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "weather-ingress"
+  labels:
+    app: weather-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/scheme: internet-facing
+    nginx.ingress.kubernetes.io/target-type: ip
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    # - host: [enter-elb-dns]
+    - host: weather-service.default.svc.cluster.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: weather-service
+                port:
+                  number: 80
+
