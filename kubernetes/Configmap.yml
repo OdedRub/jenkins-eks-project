@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: image-name
-data:
-  image_name: project_1:GIT_COMMIT
