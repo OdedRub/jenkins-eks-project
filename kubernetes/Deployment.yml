@@ -6,7 +6,7 @@ spec:
   selector: 
     matchLabels:
       app: weather-deploy
-  replicas: "$(REPLICAS)"
+  replicas: 3
   template:
     metadata:
       labels:
