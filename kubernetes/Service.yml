@@ -10,7 +10,7 @@ spec:
   - name: weather-service
     protocol: TCP
     targetPort: 8989  # port of app container
-    nodePort: 31080  # port of ELB
+    nodePort: 30080  # port of ELB
     port: 80  # port to access on ELB
   #type: ExternalName
   #externalName: "${ELB_HOSTNAME}"
