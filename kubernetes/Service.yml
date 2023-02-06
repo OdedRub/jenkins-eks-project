@@ -12,7 +12,7 @@ spec:
     targetPort: 8989  # port of app container
     nodePort: 30080  # port of ELB
     port: 80  # port to access on ELB
-  type: ExternalName
-  externalName: "${ELB_HOSTNAME}"
+  #type: ExternalName
+  #externalName: "${ELB_HOSTNAME}"
     
     
