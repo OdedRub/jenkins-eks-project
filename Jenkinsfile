@@ -35,16 +35,19 @@ pipeline {
             agent { label "blue" }
             steps {
                 script {
-                    withKubeConfig(credentialsId: 'K8S', serverUrl: '') {
+                    withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
+                    //sh '''
+                    //curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+                    //unzip awscliv2.zip
+                    //sudo ./aws/install
+                    //'''
+                    //sh '''
+                    //curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+                    //chmod +x ./kubectl
+                    //mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+                    //echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+                    //'''
                     sh '''
-                    curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
-                    chmod +x ./kubectl
-                    mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-                    echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
-                    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-                    unzip awscliv2.zip
-                    sudo ./aws/install
-                    kubectl version --client
                     kubectl apply -f ./kubernetes/Service.yml -f ./kubernetes/Deployment.yml -f ./kubernetes/Configmap.yml
                     def elb_dns = sh(returnStdout: true, script: 'aws elb describe-load-balancers --load-balancer-names weather-service --query "LoadBalancerDescriptions[0].DNSName"').trim()
                     echo "ELB DNS: ${elb_dns}"
