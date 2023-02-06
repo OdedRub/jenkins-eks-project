@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: replica-config
 data:
-  REPLICA_COUNT: "3"
+  REPLICAS: "3"
