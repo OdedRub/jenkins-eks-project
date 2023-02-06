@@ -6,7 +6,8 @@ spec:
   selector: 
     matchLabels:
       app: weather-deploy
-  replicas: ${REPLICAS:0}
+  #replicas: ${REPLICAS}
+  replicas: 2
   template:
     metadata:
       labels:
@@ -15,8 +16,6 @@ spec:
       containers:
         - name: weather
           image: 718666525897.dkr.ecr.eu-central-1.amazonaws.com/project_1:$(IMAGE_TAG)
-          #image: {{ image_name }}
-          #image: odedruby/weather:297
           ports:
           - containerPort: 8989
           envFrom:
