@@ -41,7 +41,6 @@ pipeline {
                     sh '''
                     GIT_COMMIT=$(git rev-parse HEAD)
                     kubectl apply -f ./kubernetes/image-config.yml -f ./kubernetes/replica-config.yml
-                    kubectl describe cm replica-config
                     kubectl apply -f ./kubernetes/Service.yml -f ./kubernetes/Deployment.yml
                     kubectl apply -f ./kubernetes/Nginx-ingress-1.yml
                     kubectl apply -f ./kubernetes/Ingress.yaml
