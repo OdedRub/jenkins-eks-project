@@ -18,8 +18,8 @@ spec:
           image: 718666525897.dkr.ecr.eu-central-1.amazonaws.com/project_1:${IMAGE_TAG}
           ports:
           - containerPort: 8989
-      envFrom:
-        - configMapRef:
-            name: image-config
+          envFrom:
+            - configMapRef:
+                name: image-config
         #- configMapRef:
         #    name: replica-config
