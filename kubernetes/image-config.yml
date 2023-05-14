@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: image-config
 data:
-  IMAGE_TAG: "$GIT_COMMIT"
+  IMAGE_TAG: ${GIT_COMMIT}
