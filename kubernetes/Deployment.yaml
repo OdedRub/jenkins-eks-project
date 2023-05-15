@@ -19,8 +19,8 @@ spec:
           #imagePullPolicy: Always
           ports:
           - containerPort: 8989
-          envFrom:
-            - configMapRef:
-                name: image-config
+          #envFrom:
+          #  - configMapRef:
+          #      name: image-config
         #- configMapRef:
         #    name: replica-config
