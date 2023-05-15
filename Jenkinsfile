@@ -39,13 +39,12 @@ pipeline {
 	                sh 'kubectl delete cm image-config replica-config' 
 	                }
                     sh '''
-                    GIT_COMMIT=$(git rev-parse HEAD)
-                    kubectl apply -f ./kubernetes/image-config.yml -f ./kubernetes/replica-config.yml
-                    kubectl apply -f ./kubernetes/Service.yml -f ./kubernetes/Deployment.yml
+                    export GIT_COMMIT=$(git rev-parse HEAD)
+                    envsubst '${GIT_COMMIT}' < ./kubernetes/Deployment.yaml | kubectl apply -f -
+                    kubectl apply -f ./kubernetes/Service.yml
                     kubectl apply -f ./kubernetes/Nginx-ingress-1.yml
                     kubectl apply -f ./kubernetes/Ingress.yaml
                     kubectl get service -o wide
-                    kubectl describe cm image-config
                     '''
                   }
                 }
@@ -53,4 +52,7 @@ pipeline {
         }
     }
 }
-// test
+//echo $GIT_COMMIT
+//kubectl apply -f ./kubernetes/image-config.yml
+//kubectl describe cm image-config
+//kubectl apply -f ./kubernetes/Service.yml -f ./kubernetes/Deployment.yml
