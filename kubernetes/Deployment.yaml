@@ -6,8 +6,8 @@ spec:
   selector: 
     matchLabels:
       app: weather-deploy
-  replicas: ${REPLICAS}
-  #replicas: 2
+  #replicas: ${REPLICAS}
+  replicas: 2
   template:
     metadata:
       labels:
