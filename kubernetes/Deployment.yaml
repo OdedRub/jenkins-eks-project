@@ -6,8 +6,8 @@ spec:
   selector: 
     matchLabels:
       app: weather-deploy
-  #replicas: ${REPLICAS}
-  replicas: 2
+  replicas: ${REPLICAS}
+  #replicas: 2
   template:
     metadata:
       labels:
@@ -22,5 +22,5 @@ spec:
           #envFrom:
           #  - configMapRef:
           #      name: image-config
-        #- configMapRef:
-        #    name: replica-config
+          #  - configMapRef:
+          #      name: replica-config
