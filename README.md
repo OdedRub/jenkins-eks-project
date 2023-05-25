@@ -52,7 +52,7 @@ Contains necessary files for the python application to work properly.
 The web pages presented to the user.
 
 ### Deployment.yaml
-Kubernetes deployment file for managing the application's replicas. The image tag inside the file is an environment variable which changes during the Jenkins pipeline according to the commit pushed from the repository.
+Kubernetes deployment file for managing the application's replicas. The image tag inside the file is an environment variable which changes during the Jenkins pipeline according to the current commit hash.
 
 ### Service.yaml
 Kubernetes service file for exposing the application within the cluster.
