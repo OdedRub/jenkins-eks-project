@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This project is an example of depoying a web-based application on an AWS EKS's cluster, automatically, using a Jenkins CI/CD pipeline. The web-based application provides weather forecasts for various cities using the OpenWeatherMap API to retrieve weather data, and displays the forecast of the requested city/country for the next 7 days. The application is built using Python, Flask and Kubernetes, allowing for scalability and easy deployment.
+This project is an example of deploying a web-based application on an AWS EKS's cluster, automatically, using a Jenkins CI/CD pipeline. The web-based application provides weather forecasts for various cities using the OpenWeatherMap API to retrieve weather data, and displays the forecast of the requested city/country for the next 7 days. The application is built using Python, Flask and Kubernetes, allowing for scalability and easy deployment.
 
 ## Installation and Usage
 
@@ -26,10 +26,10 @@ Before running the Weather Application, ensure that the following dependencies a
 	- Update the `app_id` and `app_key` variables in the `application.py` file with your API credentials.
 4. Set up an EKS cluster using `eksctl create cluster` command and provide your cluster's configuration.
 5. Update the `Ingress.yaml` file with the load balancer's DNS associated with your EKS cluster. Replace `[enter-elb-dns]` with the actual DNS value.
-6. Create a text file containing your EKS cluster's configuration (from '.kube/config'). This file will be used by Jenkins for deployment. Ensure it is accessible by Jenkins as a secret text named 'K8S'.
+6. Create a text file containing your EKS cluster's configuration (from `.kube/config`). This file will be used by Jenkins for deployment. Ensure it is accessible by Jenkins as a secret text named `K8S`.
 7. Set up a Jenkins pipeline using the provided `Jenkinsfile`.
 8. Inside the Jenkinsfile replace the docker tag and docker registry with your registry's information.
-9. Verify that the deployment is running with 'kubectl get deployment', 'kubectl get pods', 'kubectl get service' and 'kubectl get ingress'.
+9. Verify that the deployment is running with `kubectl get deployment`, `kubectl get pods`, `kubectl get service` and `kubectl get ingress`.
 10. Access the deployed Weather Application using the provided URL or hostname associated with the ingress controller.
 
 ## Files
