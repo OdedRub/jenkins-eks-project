@@ -35,9 +35,6 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: 'K8S', serverUrl: '']) {
-	                catchError (buildResult: 'SUCCESS', message: 'No such resources') {
-	                sh 'kubectl delete cm image-config replica-config' 
-	                }
                     sh '''
                     export GIT_COMMIT=$(git rev-parse HEAD)
                     envsubst '${GIT_COMMIT}' < ./kubernetes/Deployment.yaml | kubectl apply -f -
@@ -52,7 +49,6 @@ pipeline {
         }
     }
 }
-//echo $GIT_COMMIT
-//kubectl apply -f ./kubernetes/image-config.yml
-//kubectl describe cm image-config
-//kubectl apply -f ./kubernetes/Service.yml -f ./kubernetes/Deployment.yml
+//	                catchError (buildResult: 'SUCCESS', message: 'No such resources') {
+//	                sh 'kubectl delete cm image-config replica-config' 
+//	                }

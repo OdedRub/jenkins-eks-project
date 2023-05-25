@@ -12,7 +12,6 @@ metadata:
 spec:
   rules:
     # - host: [enter-elb-dns]
-    - host: a5597184e766c48d9a79f9901ece00f0-1498294390.eu-central-1.elb.amazonaws.com
     #- host: weather-service.default.svc.cluster.local
       http:
         paths:

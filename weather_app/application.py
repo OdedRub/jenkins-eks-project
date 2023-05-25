@@ -1,16 +1,7 @@
-import boto3
 import requests
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request
 
 application = Flask(__name__, template_folder='templates')
-url = "https://s3.eu-central-1.amazonaws.com/odedrub.weather/sky-purple-sky.gif"
-BUCKET_NAME = 'odedrub.weather'
-KEY = 'sky-purple-sky.gif'
-
-s3 = boto3.client('s3')  # use client to get item from s3
-location = ''
-data = {}
-
 
 @application.route('/', methods=['POST', 'GET'])
 def form():
@@ -52,13 +43,11 @@ def form():
             global location
             location = city
 
-            return render_template('index.html', dictb=dictb, full_city=full_city), location, data
-            # return render_template('index.html', form_data=city)
+            return render_template('index.html', dictb=dictb, full_city=full_city)
         except Exception:
             print("Invalid input.")
             return render_template('error.html')
     if request.method == 'GET':
-        # print("Enter input.")
         return render_template('index.html')
 
 if __name__ == '__main__':
